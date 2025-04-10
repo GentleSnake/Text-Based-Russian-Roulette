@@ -1,0 +1,299 @@
+classic.py:
+----------
+
+
+main.py:
+-------
+from random import shuffle
+from random import choice
+from time import sleep
+import random
+import man
+import os
+import time
+death = 0
+oppdeath = 0
+score = 0
+def cls():
+    os.system('clear')
+bullets = [1,2,3,4,5,6]
+shuffle(bullets)
+def cls():
+    os.system('clear')
+death = 0
+oppdeath = 0
+    
+    
+    
+def main():
+    cls()
+    global death
+    global oppdeath
+    print("RUSSIAN ROULETTE")
+    sleep(1)
+    print()
+    print("A Text-Based Game by William Gallagher")
+    sleep(1)
+    print()
+    input("Enter Anything to Start ")
+    cls()
+    print()
+    while True:
+        global score
+        global bullets
+        global death
+        global oppdeath
+        death = 0
+        oppdeath = 0
+        man.makeman()
+        print()
+        choice = int(input("Shoot Self(1)      Bullets Remaining: " + str(len(bullets)) + "\nShoot Opponent(2)\nShuffle Canister(3)  " + "Opponents Killed: " + str(score) + "\n---> " ))
+    
+    
+        if choice == 1:
+            if bullets[0] == 1:
+                cls()
+                man.makemanfear1()
+                time.sleep(1)
+                cls()
+                man.makemandow1()
+                print("BANG.")
+                time.sleep(2)
+                death = 1
+                bullets = [1,2,3,4,5,6]
+                shuffle(bullets)
+                cls()
+                print("You are dead. ")
+                time.sleep(2)
+                main()
+            else:
+                cls()
+                man.makemanfear1()
+                time.sleep(1)
+                print("click.")
+                time.sleep(1)
+            if len(bullets) > 1:
+                bullets.remove(bullets[0])
+            
+            
+        elif choice == 2:
+            if bullets[0] == 1:
+                cls()
+                man.makemanshoot1()
+                time.sleep(1)
+                cls()
+                man.makemanp2d()
+                print("BANG.")
+                time.sleep(2)
+                oppdeath = 1
+                score += 1
+                bullets = [1,2,3,4,5,6]
+                shuffle(bullets)
+            else:
+                cls()
+                man.makemanshoot1()
+                time.sleep(1)
+                print("click.")
+                time.sleep(1)
+            if len(bullets) > 1:
+                bullets.remove(bullets[0])
+            
+        elif choice == 3:
+            print("You shuffled the canister")
+            shuffle(bullets)
+            time.sleep(1)
+
+        if (death) or (oppdeath) == 1:
+            bullets = [1,2,3,4,5,6]
+            shuffle(bullets)
+            again = int(input("Would you like to Continue?    Yes(1)    No(2) "))
+            if again == 1:
+                shuffle(bullets)
+                death = 0
+                oppdeath = 0
+            else:
+                main()
+            
+    #Opps Turn    
+
+        man.makeman()
+        print()
+        print("ENEMYS TURN")
+        time.sleep(1)
+        ai = random.randint(1,3)
+        if ai == 1:
+            print("Opponent is Firing At Himself.")
+            time.sleep(1)
+            if bullets[0] == 1:
+                cls()
+                man.makemanfear2()
+                time.sleep(1)
+                cls()
+                man.makemandow2()
+                print("BANG.")
+                time.sleep(2)
+                oppdeath = 1
+                score += 1
+                bullets = [1,2,3,4,5,6]
+                shuffle(bullets)
+            else:
+                cls()
+                man.makemanfear2()
+                time.sleep(1)
+                print("click.")
+                time.sleep(1)
+            if len(bullets) > 1:
+                bullets.remove(bullets[0])
+        elif ai == 2:
+            print("Opponent is firing at you.")
+            time.sleep(1)
+            if bullets[0] == 1:
+                cls()
+                man.makemanshoot2()
+                time.sleep(1)
+                cls()
+                man.makemanp1d()
+                print("BANG.")
+                time.sleep(2)
+                death = 1
+                bullets = [1,2,3,4,5,6]
+                shuffle(bullets)
+                print("You are dead.")
+                time.sleep(2)
+                main()
+            else:
+                cls()
+                man.makemanshoot2()
+                time.sleep(1)
+                print("click.")
+                time.sleep(1)
+            
+            if len(bullets) > 1:
+                bullets.remove(bullets[0])
+
+        
+        
+        elif ai == 3:
+            print("Opponent is shuffiling the canister")
+            time.sleep(1)
+            shuffle(bullets)
+
+        if (death) or (oppdeath) == 1:
+            bullets = [1,2,3,4,5,6]
+            shuffle(bullets)
+            again = int(input("Would you like to Continue?    Yes(1)    No(2) "))
+            if again == 1:
+                shuffle(bullets)
+                death = 0
+                oppdeath = 0
+            else:
+                main()
+  
+        
+ 
+main()
+
+man.py:
+------
+import os
+import random
+import time
+def cls():
+    os.system('clear')
+
+def makeman():
+    cls()
+    print("       _____                   _____           ")
+    print("      /  0 0\                 /0 0  \ ")
+    print("      |   _ |                 | _   |")
+    print("       \___/                   \___/ "   )
+    print("        ||                       ||")
+    print("       /  \                     /  \ ")
+    print("       |  |                     |  |")
+    
+    
+def makemanshoot1():
+    cls()
+    print("       _____                   _____           ")
+    print("      /  0 0\                 /0 0  \ ")
+    print("      |   _ |                 | _   |")
+    print("       \___/    ___            \___/ "   )
+    print("        || ____|                 ||")
+    print("       /  \                     /  \ ")
+    print("       |  |                     |  |")
+    
+def makemanshoot2():
+    cls()
+    print("       _____                   _____           ")
+    print("      /  0 0\                 /0 0  \ ")
+    print("      |   _ |                 | _   |")
+    print("       \___/            ___    \___/ "   )
+    print("        ||                 |____ ||")
+    print("       /  \                     /  \ ")
+    print("       |  |                     |  |")
+    
+    
+def makemanp1d():
+    cls()
+    print("       ____                    _____           ")
+    print("      / x   x\                /0 0  \ ")
+    print("       |    |                 | _   |")
+    print("       __-/             ___    \___/ "   )
+    print("        |                  |____ ||")
+    print("      / \                       /  \ ")
+    print("       |  |                     |  |")
+    
+def makemanp2d():
+    cls()
+    print("       _____                   __           ")
+    print("      /  0 0\                 /x    x  \ ")
+    print("      |   _ |                 |")
+    print("       \___/     ___           \ __/ "   )
+    print("        || _____|                 ||")
+    print("       /  \                     /\ ")
+    print("       |  |                     |       |")
+    
+def makemanfear1():
+    cls()
+    print("       _____                   _____           ")
+    print("      /  o o\___              /0 0  \ ")
+    print("      |   _ |   |             | _   |")
+    print("       \___/   /               \___/ "   )
+    print("        || ___/                  ||")
+    print("       /  \                     /  \ ")
+    print("       |  |                     |  |")
+    
+def makemanfear2():
+    cls()
+    print("       _____                   _____           ")
+    print("      /  0 0\              ___/o o  \ ")
+    print("      |   _ |             |   | _   |")
+    print("       \___/               \   \___/ "   )
+    print("        ||                  \___ ||")
+    print("       /  \                     /  \ ")
+    print("       |  |                     |  |")
+    
+def makemandow1():
+    cls()
+    print("       ____                    _____           ")
+    print("      / x   x\                /0 0  \ ")
+    print("       |    |                 | _   |")
+    print("       __-/                    \___/ "   )
+    print("        |                        ||")
+    print("      / \                       /  \ ")
+    print("       |  |                     |  |")
+    
+def makemandow2():
+    cls()
+    print("       _____                   __           ")
+    print("      /  0 0\              /    x  \ ")
+    print("      |   _ |               x      |")
+    print("       \___/                  \ __/ "   )
+    print("        ||                      ||")
+    print("       /  \                     /\ ")
+    print("       |  |                     |")
+
+one_BulletMode.py:
+-----------------
+
+
